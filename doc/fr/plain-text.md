@@ -1,9 +1,11 @@
-<!-- phil-dev source-sha256=888ce7e25fdc7154d90f62ebd7ef41ed7e5bb3a0e08d1367b48a6a8312cb5e9e -->
+<!-- phil-dev source-sha256=315eef68e36eaaab972d9a46e097f580079a78ad19b09130a90129638c8d1712 -->
 # Texte brut
 
 `PlainText::convert($document)` donne le texte d'un document (pour un index de recherche, un extrait, un courriel, un
 résumé lu à voix haute) : le texte de chaque bloc sans HTML, décodé, les blocs séparés par une ligne vide, les blocs
-vides omis.
+vides omis. Le texte de chaque champ HTML est lu par un `InlineSanitizer`, deuxième argument du constructeur, qui
+refuse par `InputTooLarge` un champ plus long que son plafond : voir
+[Le plafond d'un fragment](inline-html.md#le-plafond-dun-fragment).
 
 | Type | Texte |
 |---|---|
@@ -14,7 +16,7 @@ vides omis.
 | `delimiter` | `***` |
 | `list` | un élément par ligne, `-`, `1.` ou `[x]`/`[ ]`, deux espaces par niveau |
 | `definitionList` | chaque terme, puis ses définitions en retrait |
-| `table` | une rangée par ligne, cellules séparées par ` | ` |
+| `table` | une rangée par ligne, cellules séparées par ` \| ` |
 | `index` | le titre, puis `term, pages`, deux espaces par niveau |
 | `image`, `embed`, `gallery` | les légendes ; une image sans légende, son `alt` |
 | `linkTool` | le titre et l'adresse |
